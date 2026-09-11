@@ -49,6 +49,7 @@ fn create_router() -> Router {
 fn load_templates() -> Environment<'static> {
     let mut env = Environment::new();
     let template_dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("ui/templates");
+
     for entry in fs::read_dir(template_dir).expect("ui/templates を開けない") {
         let path = entry.expect("ディレクトリ走査に失敗").path();
         if path.extension().is_some_and(|e| e == "html") {
@@ -62,6 +63,7 @@ fn load_templates() -> Environment<'static> {
                 .expect("テンプレート登録に失敗");
         }
     }
+
     env
 }
 
